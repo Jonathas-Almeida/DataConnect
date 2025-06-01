@@ -1,1 +1,2 @@
 # DataConnect
+DataConnect é um projeto Java que utiliza JDBC para conectar aplicações a bancos de dados SQL. Desenvolvido como parte de um curso introdutório, ele demonstra a execução de queries SQL (SELECT, INSERT, UPDATE, DELETE), manipulação de resultados, uso de prepared statements e gestão de transações. O projeto inclui scripts SQL para configurar o banco de dados e um arquivo de configuração para as propriedades de conexão. DataConnect serve como um estudo prático das operações básicas de banco de dados em Java.
