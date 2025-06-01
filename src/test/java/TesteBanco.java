@@ -1,17 +1,21 @@
 import conexaojdbc.SingleConnection;
+import dao.UserPosDAO;
+import model.UserPosJava;
+import org.junit.Test;
 
 import java.sql.Connection;
 
 public class TesteBanco {
-    public static void main(String[] args) {
-        Connection conn = SingleConnection.getConnection();
-        if (conn != null) {
-            System.out.println("Conexão obtida com sucesso!");
-        } else {
-            System.out.println("Falha na conexão!");
-        }
+    @Test
+    public void initBanco(){
+        UserPosDAO userPosDAO = new UserPosDAO();
+        UserPosJava userPosJava = new UserPosJava();
+
+        userPosJava.setId(6L);
+        userPosJava.setNome("Jonatha");
+        userPosJava.setEmail("Jonatha@email.com");
 
 
-        SingleConnection.closeConnection();
+        userPosDAO.salvar(userPosJava);
     }
 }
