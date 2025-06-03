@@ -20,11 +20,10 @@ public class UserPosDAO {
 
     public void salvar (UserPosJava userPosJava) {
         try {
-            String sql = "insert into userposjava (id, nome, email ) values (?,?,?)";
+            String sql = "insert into userposjava (nome, email ) values (?,?)";
             PreparedStatement insert = connection.prepareStatement(sql);
-            insert.setLong(1, userPosJava.getId() );
-            insert.setString(2, userPosJava.getNome());
-            insert.setString(3, userPosJava.getEmail());
+            insert.setString(1, userPosJava.getNome());
+            insert.setString(2, userPosJava.getEmail());
             insert.execute();
             connection.commit(); // Salva no banco
         } catch (Exception e ) {
@@ -77,6 +76,45 @@ public class UserPosDAO {
         }
 
         return retorno;
+    }
+
+    public void atualizar(UserPosJava userPosJava) {
+
+        try {
+            String sql = "update userposjava set nome = ? WHERE id = ?";
+
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, userPosJava.getNome());
+            statement.setLong(2, userPosJava.getId());
+
+            statement.execute();
+            connection.commit();
+        } catch (Exception e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+            e.printStackTrace();
+        }
+    }
+
+    public void deletar (Long id) {
+        try {
+            String sql = "delete from userposjava where id = " + id;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.execute();
+            connection.commit();
+        } catch (Exception e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+            e.printStackTrace();
+        }
+
     }
 
 }

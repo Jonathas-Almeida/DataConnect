@@ -12,9 +12,9 @@ public class TesteBanco {
         UserPosDAO userPosDAO = new UserPosDAO();
         UserPosJava userPosJava = new UserPosJava();
 
-        userPosJava.setId(6L);
-        userPosJava.setNome("Jonatha");
-        userPosJava.setEmail("Jonatha@email.com");
+
+        userPosJava.setNome("EmilleGabrielle");
+        userPosJava.setEmail("Emily@email.com");
 
 
         userPosDAO.salvar(userPosJava);
@@ -45,5 +45,29 @@ public class TesteBanco {
             throw new RuntimeException(e);
         }
 
+    }
+    @Test
+    public void initAtualizar(){
+        try {
+            UserPosDAO dao = new UserPosDAO();
+            UserPosJava objetoBanco = dao.buscar(6L);
+            objetoBanco.setNome("Jonathas Gabriel ");
+            dao.atualizar(objetoBanco);
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+
+
+
+    }
+    @Test
+    public void initDeletar() {
+       try {
+           UserPosDAO dao = new UserPosDAO();
+           dao.deletar(5L);
+
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
     }
 }
