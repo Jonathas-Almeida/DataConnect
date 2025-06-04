@@ -1,5 +1,6 @@
 import conexaojdbc.SingleConnection;
 import dao.UserPosDAO;
+import model.Telefone;
 import model.UserPosJava;
 import org.junit.Test;
 
@@ -64,10 +65,21 @@ public class TesteBanco {
     public void initDeletar() {
        try {
            UserPosDAO dao = new UserPosDAO();
-           dao.deletar(5L);
+           dao.deletar(11L);
 
        } catch (Exception e) {
            e.printStackTrace();
        }
+    }
+
+    @Test
+    public void testeInsertTelefone(){
+        Telefone telefone = new Telefone();
+        telefone.setNumero("75 - 9214-6614");
+        telefone.setTipo("cel");
+        telefone.setUsuario(3L);
+
+        UserPosDAO dao = new UserPosDAO();
+        dao.salvarTelefone(telefone);
     }
 }
